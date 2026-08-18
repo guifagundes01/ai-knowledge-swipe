@@ -59,42 +59,57 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+  --color-must: var(--must);
+  --color-must-foreground: var(--must-foreground);
+  --color-skip: var(--skip);
+  --font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "DM Sans", ui-sans-serif, system-ui, sans-serif;
 }
 
 :root {
-  --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.129 0.042 264.695);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.129 0.042 264.695);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.129 0.042 264.695);
-  --primary: oklch(0.208 0.042 265.755);
-  --primary-foreground: oklch(0.984 0.003 247.858);
-  --secondary: oklch(0.968 0.007 247.896);
-  --secondary-foreground: oklch(0.208 0.042 265.755);
-  --muted: oklch(0.968 0.007 247.896);
-  --muted-foreground: oklch(0.554 0.046 257.417);
-  --accent: oklch(0.968 0.007 247.896);
-  --accent-foreground: oklch(0.208 0.042 265.755);
-  --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: oklch(0.929 0.013 255.508);
-  --input: oklch(0.929 0.013 255.508);
-  --ring: oklch(0.704 0.04 256.788);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.984 0.003 247.858);
-  --sidebar-foreground: oklch(0.129 0.042 264.695);
-  --sidebar-primary: oklch(0.208 0.042 265.755);
-  --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-accent: oklch(0.968 0.007 247.896);
-  --sidebar-accent-foreground: oklch(0.208 0.042 265.755);
-  --sidebar-border: oklch(0.929 0.013 255.508);
-  --sidebar-ring: oklch(0.704 0.04 256.788);
+  --radius: 1.1rem;
+  --background: oklch(0.17 0.018 260);
+  --foreground: oklch(0.97 0.008 100);
+  --card: oklch(0.23 0.02 262);
+  --card-foreground: oklch(0.97 0.008 100);
+  --popover: oklch(0.21 0.02 262);
+  --popover-foreground: oklch(0.97 0.008 100);
+  --primary: oklch(0.88 0.19 122);
+  --primary-foreground: oklch(0.2 0.04 140);
+  --secondary: oklch(0.28 0.022 262);
+  --secondary-foreground: oklch(0.97 0.008 100);
+  --muted: oklch(0.26 0.02 262);
+  --muted-foreground: oklch(0.72 0.02 262);
+  --accent: oklch(0.3 0.03 262);
+  --accent-foreground: oklch(0.97 0.008 100);
+  --destructive: oklch(0.63 0.21 22);
+  --destructive-foreground: oklch(0.98 0.01 100);
+  --must: oklch(0.78 0.16 62);
+  --must-foreground: oklch(0.22 0.05 62);
+  --skip: oklch(0.68 0.14 20);
+  --border: oklch(1 0 0 / 12%);
+  --input: oklch(1 0 0 / 16%);
+  --ring: oklch(0.88 0.19 122);
+  --chart-1: oklch(0.88 0.19 122);
+  --chart-2: oklch(0.78 0.16 62);
+  --chart-3: oklch(0.7 0.13 220);
+  --chart-4: oklch(0.68 0.14 20);
+  --chart-5: oklch(0.8 0.09 160);
+  --sidebar: oklch(0.2 0.02 262);
+  --sidebar-foreground: oklch(0.97 0.008 100);
+  --sidebar-primary: oklch(0.88 0.19 122);
+  --sidebar-primary-foreground: oklch(0.2 0.04 140);
+  --sidebar-accent: oklch(0.28 0.022 262);
+  --sidebar-accent-foreground: oklch(0.97 0.008 100);
+  --sidebar-border: oklch(1 0 0 / 12%);
+  --sidebar-ring: oklch(0.88 0.19 122);
+  --gradient-glow: radial-gradient(
+      60% 50% at 20% 0%,
+      oklch(0.88 0.19 122 / 0.16),
+      transparent 70%
+    ),
+    radial-gradient(50% 45% at 95% 10%, oklch(0.78 0.16 62 / 0.14), transparent 70%);
+  --shadow-card: 0 24px 60px -20px oklch(0 0 0 / 0.7);
 }
 
 .dark {
@@ -141,4 +156,46 @@
     background-color: var(--color-background);
     color: var(--color-foreground);
   }
+}
+
+@layer base {
+  html {
+    font-family: var(--font-sans);
+  }
+
+  h1,
+  h2,
+  h3,
+  .font-display {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+  }
+
+  body {
+    background-image: var(--gradient-glow);
+    background-attachment: fixed;
+  }
+}
+
+@utility card-stack {
+  box-shadow: var(--shadow-card);
+}
+
+@keyframes xp-pop {
+  0% {
+    opacity: 0;
+    transform: translateY(6px) scale(0.9);
+  }
+  25% {
+    opacity: 1;
+    transform: translateY(-2px) scale(1.05);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-18px) scale(1);
+  }
+}
+
+@utility animate-xp-pop {
+  animation: xp-pop 1100ms ease-out forwards;
 }
