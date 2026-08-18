@@ -84,7 +84,7 @@ export function explanationFor(item: ContentItem, ctx: RankingContext): string |
   if (matched.length > 1) {
     return `Matches your interests + ${ctx.profile.level} level`;
   }
-  return `Because you like ${topicLabel(matched[0])}`;
+  return `Because you like ${topicLabel(matched[0]!)}`;
 }
 
 /**
